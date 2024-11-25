@@ -31,7 +31,7 @@ class UserResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('email')->email()->required()->label('Email Address')->unique(ignoreRecord: true),
-                DateTimePicker::make('email_verified_at')->label('Email Verified At')->hiddenOn('create')->default(now()),
+                DateTimePicker::make('email_verified_at')->label('Email Verified At')->hiddenOn('create'),
                 TextInput::make('password')->password()->required()->hiddenOn('edit'),
             ]);
     }
@@ -43,7 +43,7 @@ class UserResource extends Resource
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('email')->sortable()->searchable(),
                 TextColumn::make('created_at')->dateTime(),
-                TextColumn::make('email_verified_at')->dateTime('Y-m-d h:i A'),
+                TextColumn::make('verified_at')->dateTime(),
             ])
             ->filters([
                 //

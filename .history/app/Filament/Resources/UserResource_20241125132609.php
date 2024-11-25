@@ -16,8 +16,6 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\RelationManagers;
-use Filament\Forms\Components\DateTimePicker;
-use Illuminate\Support\Facades\Date;
 
 class UserResource extends Resource
 {
@@ -31,7 +29,6 @@ class UserResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('email')->email()->required()->label('Email Address')->unique(ignoreRecord: true),
-                DateTimePicker::make('email_verified_at')->label('Email Verified At')->hiddenOn('create')->default(now()),
                 TextInput::make('password')->password()->required()->hiddenOn('edit'),
             ]);
     }
@@ -43,7 +40,7 @@ class UserResource extends Resource
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('email')->sortable()->searchable(),
                 TextColumn::make('created_at')->dateTime(),
-                TextColumn::make('email_verified_at')->dateTime('Y-m-d h:i A'),
+                TextColumn::make('verified_at')->dateTime(),
             ])
             ->filters([
                 //
