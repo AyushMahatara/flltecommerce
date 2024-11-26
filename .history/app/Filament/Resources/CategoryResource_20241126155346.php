@@ -17,7 +17,6 @@ use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CategoryResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 
@@ -42,7 +41,7 @@ class CategoryResource extends Resource
                             ->dehydrated()
                             ->required()->unique(Category::class, 'slug', ignoreRecord: true),
                     ]),
-                    SpatieMediaLibraryFileUpload::make('categories')->collection('categories.thumbnails'),
+                    SpatieMediaLibraryFileUpload::make('image')->collection('categories.thumbnails'),
                     // FileUpload::make('image')->directory('categories'),
                     Toggle::make('status')->default(true),
                 ]),
@@ -58,8 +57,7 @@ class CategoryResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
-                SpatieMediaLibraryImageColumn::make('image')->collection('categories.thumbnails')->toggleable(),
-
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

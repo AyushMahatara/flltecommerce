@@ -58,7 +58,7 @@ class CategoryResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
-                SpatieMediaLibraryImageColumn::make('image')->collection('categories.thumbnails')->toggleable(),
+                SpatieMediaLibraryImageColumn::make('thumbnails')->collection('categories.thumbnails'),
 
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
