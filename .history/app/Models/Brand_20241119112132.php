@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Brand extends Model implements HasMedia
+class Brand extends Model
 {
-    use InteractsWithMedia;
+    //
 
     protected $table = 'brands';
 

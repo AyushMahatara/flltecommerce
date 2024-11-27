@@ -4,8 +4,8 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use App\Models\Brand;
 use Filament\Forms\Set;
-use App\Models\Category;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
@@ -13,20 +13,18 @@ use Filament\Resources\Resource;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Section;
-use Filament\Tables\Actions\ActionGroup;
-use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\BrandResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\BrandResource\RelationManagers;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use App\Filament\Resources\CategoryResource\RelationManagers;
 
-class CategoryResource extends Resource
+class BrandResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = Brand::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
@@ -41,10 +39,9 @@ class CategoryResource extends Resource
                         Forms\Components\TextInput::make('slug')
                             ->disabled()
                             ->dehydrated()
-                            ->required()->unique(Category::class, 'slug', ignoreRecord: true),
+                            ->required()->unique(Brand::class, 'slug', ignoreRecord: true),
                     ]),
-                    SpatieMediaLibraryFileUpload::make('categories')->collection('categories.thumbnails'),
-                    // FileUpload::make('image')->directory('categories'),
+                    SpatieMediaLibraryFileUpload::make('brands')->collection('brands.thumbnails'),
                     Toggle::make('status')->default(true),
                 ]),
 
@@ -59,7 +56,7 @@ class CategoryResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
-                SpatieMediaLibraryImageColumn::make('image')->collection('categories.thumbnails')->toggleable(),
+                SpatieMediaLibraryImageColumn::make('image')->collection('brands.thumbnails')->toggleable(),
 
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
@@ -99,9 +96,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListBrands::route('/'),
+            'create' => Pages\CreateBrand::route('/create'),
+            'edit' => Pages\EditBrand::route('/{record}/edit'),
         ];
     }
 }
