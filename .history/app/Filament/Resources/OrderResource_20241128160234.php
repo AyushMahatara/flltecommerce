@@ -6,11 +6,9 @@ use Filament\Forms;
 use Filament\Tables;
 use App\Models\Order;
 use App\Models\Product;
-use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Support\Number;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Group;
 use function Laravel\Prompts\select;
@@ -18,10 +16,9 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
-
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Forms\Components\Placeholder;
+
 use Filament\Forms\Components\ToggleButtons;
 use App\Filament\Resources\OrderResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -101,30 +98,12 @@ class OrderResource extends Resource
                                 ->disableOptionsWhenSelectedInSiblingRepeaterItems()
                                 ->columnSpan(4)
                                 ->reactive()
-                                ->afterStateUpdated(fn($state, Set $set) => $set('unit_amount', Product::find($state)?->price ?? 0))
-                                ->afterStateUpdated(fn($state, Set $set) => $set('total_amount', Product::find($state)?->price ?? 0)),
-                            TextInput::make('quantity')
-                                ->required()
-                                ->numeric()
-                                ->default(1)
-                                ->minValue(1)
-                                ->columnSpan(2)
-                                ->reactive()
-                                ->afterStateUpdated(fn($state, Set $set, Get $get) => $set('total_amount', $state * $get('unit_amount'))),
-                            TextInput::make('unit_amount')->required()->numeric()->disabled()->dehydrated()->default(0)->columnSpan(3),
-                            TextInput::make('total_amount')->required()->numeric()->disabled()->dehydrated()->default(0)->columnSpan(3),
+                                ->afterStateUpdated(fn($state, Set $set) => $set('unit_amount', Product::find($state)?->price ?? 0)),
+                                ->afterStateUpdated(fn($state, Set $set) => $set('unit_amount', Product::find($state)?->price ?? 0)),
+                            TextInput::make('quantity')->required()->numeric()->default(1)->minValue(1)->columnSpan(2),
+                            TextInput::make('unit_amount')->required()->numeric()->disabled()->default(0)->columnSpan(3),
+                            TextInput::make('total_amount')->required()->numeric()->default(0)->columnSpan(3),
                         ])->columns(12),
-
-                        Placeholder::make('grand_total_placeholder')
-                            ->label('Grand Total')
-                            ->content(function (Get $get, Set $set) {
-                                $total = 0;
-                                if (!$repeaters = $get('items')) return $total;
-                                foreach ($repeaters as $key => $repeater) {
-                                    $total += $repeater['total_amount'];
-                                }
-                                return Number::currency($total, $get('currency'));
-                            })
                     ])
                 ])->columnSpanFull(),
             ]);
