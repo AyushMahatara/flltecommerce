@@ -34,7 +34,7 @@ use Filament\Forms\Components\Hidden;
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
-    protected static ?int $navigationSort = 3;
+
     protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
 
     public static function form(Form $form): Form

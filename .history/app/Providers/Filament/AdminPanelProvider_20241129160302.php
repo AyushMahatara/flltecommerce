@@ -23,7 +23,7 @@ class AdminPanelProvider extends PanelProvider
 {
     protected int | string | array $columnSpan = 'full';
 
-    protected static ?int $sort = 1;
+    protected static ?int $sort = 2;
     public function panel(Panel $panel): Panel
     {
 
@@ -43,6 +43,8 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 OrderStats::class
+                // Widgets\AccountWidget::class,
+                // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

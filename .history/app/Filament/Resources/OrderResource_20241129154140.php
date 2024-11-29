@@ -29,12 +29,11 @@ use Filament\Forms\Components\ToggleButtons;
 use App\Filament\Resources\OrderResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\OrderResource\RelationManagers;
-use Filament\Forms\Components\Hidden;
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
-    protected static ?int $navigationSort = 3;
+
     protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
 
     public static function form(Form $form): Form
@@ -129,8 +128,7 @@ class OrderResource extends Resource
                                 }
                                 $set('grand_total', $total);
                                 return Number::currency($total, $get('currency'));
-                            }),
-                        Hidden::make('grand_total')->default(0),
+                            })
                     ])
                 ])->columnSpanFull(),
             ]);
