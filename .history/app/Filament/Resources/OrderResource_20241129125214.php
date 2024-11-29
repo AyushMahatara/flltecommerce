@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\OrderResource\RelationManagers\AddressRelationManager;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Order;
@@ -197,7 +198,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\AddressRelationManager::class
+            AddressRelationManager::class
         ];
     }
 
