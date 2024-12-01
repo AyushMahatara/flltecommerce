@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "837d9ec57c2ebeb9325a3c55a2feaf51",
+    "content-hash": "fb841e79416a48a81c89359513d879ff",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -3177,16 +3177,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.5.12",
+            "version": "v3.5.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "3c8d1f9d7d9098aaea663093ae168f2d5d2ae73d"
+                "reference": "11b54c56a135a4eb7e2dd0fd1d8d884af462597a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/3c8d1f9d7d9098aaea663093ae168f2d5d2ae73d",
-                "reference": "3c8d1f9d7d9098aaea663093ae168f2d5d2ae73d",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/11b54c56a135a4eb7e2dd0fd1d8d884af462597a",
+                "reference": "11b54c56a135a4eb7e2dd0fd1d8d884af462597a",
                 "shasum": ""
             },
             "require": {
@@ -3212,12 +3212,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Livewire\\LivewireServiceProvider"
-                    ],
                     "aliases": {
                         "Livewire": "Livewire\\Livewire"
-                    }
+                    },
+                    "providers": [
+                        "Livewire\\LivewireServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -3241,7 +3241,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.5.12"
+                "source": "https://github.com/livewire/livewire/tree/v3.5.15"
             },
             "funding": [
                 {
@@ -3249,7 +3249,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-15T19:35:06+00:00"
+            "time": "2024-11-29T15:49:18+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
