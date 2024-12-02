@@ -10,11 +10,9 @@
 </head>
 
 <body>
-    @livewire('partials.navbar')
     <main>
         {{ $slot }}
     </main>
-    @livewire('partials.footer')
     @livewireScripts
     <script src="./node_modules/preline/dist/preline.js"></script>
 </body>

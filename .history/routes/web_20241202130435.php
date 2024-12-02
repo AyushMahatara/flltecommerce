@@ -9,11 +9,8 @@ use App\Livewire\ProductsPage;
 use App\Livewire\Auth\LoginPage;
 use App\Livewire\CategoriesPage;
 use App\Livewire\Auth\RegisterPage;
-use App\Livewire\Auth\ResetPasswordPage;
-use App\Livewire\CancelPage;
 use App\Livewire\MyOrderDetailPage;
 use App\Livewire\ProdectDetailPage;
-use App\Livewire\SuccessPage;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePage::class)->name('home');
@@ -28,7 +25,4 @@ Route::get('/my-orders/{order}', MyOrderDetailPage::class)->name('my.orders.deta
 Route::get('/login', LoginPage::class)->name('login');
 Route::get('/register', RegisterPage::class)->name('register');
 Route::get('/forgot', ForgotPasswordPage::class)->name('forgot.password');
-Route::get('/reset', ResetPasswordPage::class)->name('reset.password');
-
-Route::get('/success', SuccessPage::class)->name('success');
-Route::get('/cancel', CancelPage::class)->name('cancel');
+Route::get('')
