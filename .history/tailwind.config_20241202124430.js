@@ -10,12 +10,12 @@ export default {
         "./resources/**/*.vue",
         "node_modules/preline/dist/*.js",
     ],
-    darkMode: "false",
     theme: {
         extend: {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
+            darkMode: ["class"],
         },
     },
     plugins: [require("preline/plugin")],
