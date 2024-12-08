@@ -41,13 +41,13 @@
                         <ul>
                             <li class="mb-4">
                                 <label for="" class="flex items-center dark:text-gray-300">
-                                    <input type="checkbox" class="w-4 h-4 mr-2">
-                                    <span class="text-lg dark:text-gray-400">In Stock</span>
+                                    <input type="checkbox" wire:model.live='featured' value="1" class="w-4 h-4 mr-2">
+                                    <span class="text-lg dark:text-gray-400">Featured</span>
                                 </label>
                             </li>
                             <li class="mb-4">
                                 <label for="" class="flex items-center dark:text-gray-300">
-                                    <input type="checkbox" class="w-4 h-4 mr-2">
+                                    <input type="checkbox" wire:model.live='on_sale' value="1" class="w-4 h-4 mr-2">
                                     <span class="text-lg dark:text-gray-400">On Sale</span>
                                 </label>
                             </li>

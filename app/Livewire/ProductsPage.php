@@ -19,6 +19,12 @@ class ProductsPage extends Component
     public $selected_categories = [];
     #[Url]
     public $selected_brands = [];
+    #[Url]
+    public $featured = 0;
+
+    #[Url]
+    public $on_sale = 0;
+
     public function render()
     {
         $products = Product::where('is_active', 1)->with('media')->paginate(6);
@@ -27,6 +33,12 @@ class ProductsPage extends Component
         }
         if (!empty($this->selected_brands)) {
             $products = Product::where('is_active', 1)->whereIn('brand_id', $this->selected_brands)->with('media')->paginate(6);
+        }
+        if ($this->featured == 1) {
+            $products = Product::where('is_active', 1)->where('is_featured', 1)->with('media')->paginate(6);
+        }
+        if ($this->on_sale == 1) {
+            $products = Product::where('is_active', 1)->where('on_sale', 1)->with('media')->paginate(6);
         }
         $categories = Category::where('status', 1)->get(['id', 'name', 'slug']);
         $brands = Brand::where('status', 1)->get(['id', 'name', 'slug']);
