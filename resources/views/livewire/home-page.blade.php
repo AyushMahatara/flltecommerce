@@ -227,7 +227,7 @@
 
                 @foreach ($brands as $brand)
                 <div class="bg-white rounded-lg shadow-md dark:bg-gray-800">
-                    <a href="" class="">
+                    <a href="/products?selected_brands[0]={{ $brand->id }}" class="">
                         <img src="{{ asset( $brand->getFirstMediaUrl('brands.thumbnails')) }}" alt=""
                             class="object-cover w-full h-64 rounded-t-lg">
                     </a>
@@ -274,18 +274,19 @@
         <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
             <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
 
+                @foreach ($categories as $category)
                 <a class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md transition dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                    href="#">
+                    href="/products?selected_categories[0]={{ $category->id }}">
                     <div class="p-4 md:p-5">
                         <div class="flex justify-between items-center">
                             <div class="flex items-center">
                                 <img class="h-[2.375rem] w-[2.375rem] rounded-full"
-                                    src="https://cdn.bajajelectronics.com/product/b002c02c-c379-49f8-b2a6-bd2e56d0e23a"
+                                    src="{{ asset($category->getFirstMediaUrl('categories.thumbnails')) }}"
                                     alt="Image Description">
                                 <div class="ms-3">
                                     <h3
                                         class="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
-                                        Laptops
+                                        {{ $category->name }}
                                     </h3>
                                 </div>
                             </div>
@@ -299,6 +300,8 @@
                         </div>
                     </div>
                 </a>
+
+                @endforeach
 
 
 
