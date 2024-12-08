@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomePage::class)->name('home');
 Route::get('/categories', CategoriesPage::class)->name('categories');
 Route::get('/products', ProductsPage::class)->name('products');
-Route::get('/products/{product}', ProdectDetailPage::class)->name('product.details.page');
+Route::get('/products/{slug}', ProdectDetailPage::class)->name('product.details.page');
 Route::get('/cart', CartPage::class)->name('carts');
 Route::get('/checkout', CheckoutPage::class)->name('checkout');
 Route::get('/my-orders', MyOrdersPage::class)->name('my.orders');
-Route::get('/my-orders/{order}', MyOrderDetailPage::class)->name('my.orders.detail');
+Route::get('/my-orders/{slug}', MyOrderDetailPage::class)->name('my.orders.detail');
 
 Route::get('/login', LoginPage::class)->name('login');
 Route::get('/register', RegisterPage::class)->name('register');

@@ -226,10 +226,9 @@
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-4 md:grid-cols-2">
 
                 @foreach ($brands as $brand)
-                <img src="{{ asset( $brand->getFirstMediaUrl('brands.thumbnails')) }}" alt="">
-                {{-- <div class="bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800">
                     <a href="" class="">
-                        <img src="https://i.pinimg.com/originals/a0/97/c3/a097c3c89b6d9a14f52f9515395d5220.png" alt=""
+                        <img src="{{ asset( $brand->getFirstMediaUrl('brands.thumbnails')) }}" alt=""
                             class="object-cover w-full h-64 rounded-t-lg">
                     </a>
                     <div class="p-5 text-center">
@@ -237,7 +236,9 @@
                             {{ $brand->name }}
                         </a>
                     </div>
-                </div> --}}
+                </div>
+
+
                 @endforeach
 
 
