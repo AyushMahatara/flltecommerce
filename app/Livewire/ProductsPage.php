@@ -18,7 +18,6 @@ class ProductsPage extends Component
     #[Url]
     public $selected_categories = [];
     #[Url]
-
     public $selected_brands = [];
     public function render()
     {
