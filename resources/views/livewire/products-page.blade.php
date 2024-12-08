@@ -26,9 +26,9 @@
                             @foreach ($brands as $brand)
                             <li class="mb-4" wire:key='{{ $brand->id }}'>
                                 <label for="{{ $brand->slug }}" class="flex items-center dark:text-gray-300">
-                                    <input type="checkbox" id="{{ $brand->slug }}" value="{{ $brand->id }}"
-                                        class="w-4 h-4 mr-2">
-                                    <span class="text-lg dark:text-gray-400">Apple</span>
+                                    <input type="checkbox" id="{{ $brand->slug }}" wire:model.live='selected_brands'
+                                        value="{{ $brand->id }}" class="w-4 h-4 mr-2">
+                                    <span class="text-lg dark:text-gray-400">{{ $brand->name }}</span>
                                 </label>
                             </li>
 
