@@ -50,7 +50,7 @@ class ProductResource extends Resource
                             MarkdownEditor::make('description')->required()->columnSpanFull()->fileAttachmentsDirectory('products'),
                         ])->columns(2),
                     Section::make('Images')->schema([
-                        SpatieMediaLibraryFileUpload::make('images')->collection('products')->multiple()->reorderable()->maxFiles(5),
+                        SpatieMediaLibraryFileUpload::make('images')->collection('products.thumbnails')->multiple()->reorderable()->maxFiles(5),
                     ])
                 ])->columnSpan(2),
                 Group::make()->schema([

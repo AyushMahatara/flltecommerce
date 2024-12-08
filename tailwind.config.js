@@ -1,4 +1,5 @@
 import defaultTheme from "tailwindcss/defaultTheme";
+import preline from "preline/plugin";
 
 /** @type {import('tailwindcss').Config} */
 export default {
