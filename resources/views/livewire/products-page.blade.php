@@ -85,7 +85,6 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap items-center ">
-
                         @foreach ($products as $product)
                         <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3" wire:key='{{ $product->id }}'>
                             <div class="border border-gray-300 dark:border-gray-700">

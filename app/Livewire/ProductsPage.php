@@ -20,29 +20,30 @@ class ProductsPage extends Component
     #[Url]
     public $selected_brands = [];
     #[Url]
-    public $featured = 0;
+    public $featured;
 
     #[Url]
-    public $on_sale = 0;
+    public $on_sale;
     #[Url]
     public $price_range = 300000;
     public function render()
     {
-        $products = Product::where('is_active', 1)->with('media')->paginate(6);
+        $products = Product::where('is_active', 1)->with('media');
+
         if (!empty($this->selected_categories)) {
-            $products = Product::where('is_active', 1)->whereIn('category_id', $this->selected_categories)->with('media')->paginate(6);
+            $products->whereIn('category_id', $this->selected_categories);
         }
         if (!empty($this->selected_brands)) {
-            $products = Product::where('is_active', 1)->whereIn('brand_id', $this->selected_brands)->with('media')->paginate(6);
+            $products->whereIn('brand_id', $this->selected_brands);
         }
         if ($this->featured == 1) {
-            $products = Product::where('is_active', 1)->where('is_featured', 1)->with('media')->paginate(6);
+            $products->where('is_featured', 1);
         }
         if ($this->on_sale == 1) {
-            $products = Product::where('is_active', 1)->where('on_sale', 1)->with('media')->paginate(6);
+            $products->where('on_sale', 1);
         }
         if ($this->price_range) {
-            $products = Product::whereBetween('price', [0, $this->price_range])->where('is_active', 1)->with('media')->paginate(6);
+            $products->whereBetween('price', [0, $this->price_range]);
         }
         $categories = Category::where('status', 1)->get(['id', 'name', 'slug']);
         $brands = Brand::where('status', 1)->get(['id', 'name', 'slug']);
@@ -50,7 +51,7 @@ class ProductsPage extends Component
         return view(
             'livewire.products-page',
             [
-                'products' => $products,
+                'products' => $products->paginate(6),
                 'categories' => $categories,
                 'brands' => $brands
             ]

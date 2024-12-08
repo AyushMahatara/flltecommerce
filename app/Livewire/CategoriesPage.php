@@ -3,11 +3,18 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Category;
+use Livewire\Attributes\Title;
 
+#[Title('Categories Page')]
 class CategoriesPage extends Component
 {
     public function render()
     {
-        return view('livewire.categories-page');
+        $categories = Category::where('status', 1)->get();
+
+        return view('livewire.categories-page', [
+            'categories' => $categories
+        ]);
     }
 }
