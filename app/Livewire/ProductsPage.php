@@ -24,7 +24,8 @@ class ProductsPage extends Component
 
     #[Url]
     public $on_sale = 0;
-
+    #[Url]
+    public $price_range = 300000;
     public function render()
     {
         $products = Product::where('is_active', 1)->with('media')->paginate(6);
@@ -39,6 +40,9 @@ class ProductsPage extends Component
         }
         if ($this->on_sale == 1) {
             $products = Product::where('is_active', 1)->where('on_sale', 1)->with('media')->paginate(6);
+        }
+        if ($this->price_range) {
+            $products = Product::whereBetween('price', [0, $this->price_range])->where('is_active', 1)->with('media')->paginate(6);
         }
         $categories = Category::where('status', 1)->get(['id', 'name', 'slug']);
         $brands = Brand::where('status', 1)->get(['id', 'name', 'slug']);
