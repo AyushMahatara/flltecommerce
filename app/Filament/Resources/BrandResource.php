@@ -43,7 +43,7 @@ class BrandResource extends Resource
                             ->dehydrated()
                             ->required()->unique(Brand::class, 'slug', ignoreRecord: true),
                     ]),
-                    SpatieMediaLibraryFileUpload::make('brands')->collection('brands.thumbnails')->directory('brands'),
+                    SpatieMediaLibraryFileUpload::make('brands')->collection('brands')->required(),
                     Toggle::make('status')->default(true),
                 ]),
 
@@ -58,7 +58,7 @@ class BrandResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
-                SpatieMediaLibraryImageColumn::make('image')->collection('brands.thumbnails')->toggleable(),
+                SpatieMediaLibraryImageColumn::make('image')->collection('brands')->toggleable(),
 
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
