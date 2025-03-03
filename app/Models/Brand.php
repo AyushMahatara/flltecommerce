@@ -11,7 +11,10 @@ class Brand extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $table = 'brands';
-
+    // public function getMediaDirectory(): string
+    // {
+    //     return 'brands';
+    // }
     protected $guarded = [];
 
     public function products()

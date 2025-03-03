@@ -43,7 +43,7 @@ class BrandResource extends Resource
                             ->dehydrated()
                             ->required()->unique(Brand::class, 'slug', ignoreRecord: true),
                     ]),
-                    SpatieMediaLibraryFileUpload::make('brands')->collection('brands.thumbnails')->directory('brands'),
+                    SpatieMediaLibraryFileUpload::make('brands')->collection('brands')->directory('brands'),
                     Toggle::make('status')->default(true),
                 ]),
 
