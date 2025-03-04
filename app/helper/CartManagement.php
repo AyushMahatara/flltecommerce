@@ -25,12 +25,44 @@ class CartManagement
         } else {
             $product = Product::where('id', $product_id)->with('media')->first(['id', 'name', 'images', 'price']);
             if ($product) {
-                // dd($product->media[0]['collection_name']);
+                // dd($product->media[0]['file_name']);
                 $cart_items[] = [
                     'product_id' => $product->id,
                     'name' => $product->name,
-                    'images' => $product->media[0]['collection_name'],
+                    'images' => $product->media[0]['file_name'],
                     'quantity' => 1,
+                    'unit_amount' => $product->price,
+                    'total_amount' => $product->price,
+                ];
+            }
+        }
+        self::addCartItemToCookie($cart_items);
+        return count($cart_items);
+    }
+    //add item to cart with quantity
+    static public function addItemToCartWithQty($product_id, $quantity)
+    {
+        $cart_items = self::getCartItemsFromCookie();
+        $existing_item = null;
+        foreach ($cart_items as $key => $item) {
+            if ($item['product_id'] == $product_id) {
+                $existing_item = $key;
+                break;
+            }
+        }
+
+        if ($existing_item !== null) {
+            $cart_items[$existing_item]['quantity'] = $quantity;
+            $cart_items[$existing_item]['total_amount'] = $cart_items[$existing_item]['quantity'] * $cart_items[$existing_item]['unit_amount'];
+        } else {
+            $product = Product::where('id', $product_id)->with('media')->first(['id', 'name', 'images', 'price']);
+            if ($product) {
+                // dd($product->media[0]['file_name']);
+                $cart_items[] = [
+                    'product_id' => $product->id,
+                    'name' => $product->name,
+                    'images' => $product->media[0]['file_name'],
+                    'quantity' => $quantity,
                     'unit_amount' => $product->price,
                     'total_amount' => $product->price,
                 ];
